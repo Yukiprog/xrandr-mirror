@@ -73,7 +73,7 @@ func GetDisplays() ([]Display, error) {
 
 	sc := bufio.NewScanner(bytes.NewBuffer(b))
 	for sc.Scan() {
-		name, err := submatch(sc.Text(), `^(\w+) connected`, 0)
+		name, err := submatch(sc.Text(), `^(\w+-((\w)|(\w+-+\w))) connected`, 0)
 		if _, ok := err.(*notMatchErr); ok {
 			size, err := submatch(sc.Text(), `^\s+(\d+x\w+)\s+`, 0)
 			if _, ok := err.(*notMatchErr); ok {
